@@ -1,0 +1,185 @@
+@import "tailwindcss";
+
+:root {
+  --background: #030303;
+  --foreground: #ededed;
+  
+  /* Custom Cyber Theme Colors - VS Code loves standard CSS variables! */
+  --color-cyber-bg: #030303;
+  --color-cyber-card: #090d16;
+  --color-cyber-accent: #00ffcc;
+  --color-cyber-purple: #7000ff;
+  --color-cyber-muted: #8a99ad;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Animations */
+@keyframes pulseGlow {
+  0% { opacity: 0.3; transform: scale(1); }
+  100% { opacity: 0.6; transform: scale(1.1); }
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Custom Helper Utilities */
+.animate-glow-slow {
+  animation: pulseGlow 8s infinite alternate;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Custom Grid Effect */
+.cyber-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 4rem 4rem;
+}
+
+/* Glassmorphism Panel Effect */
+.glass-panel {
+  background: rgba(11, 15, 25, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
+}
+
+.glass-panel:hover {
+  border-color: rgba(0, 255, 204, 0.3);
+  box-shadow: 0 0 30px rgba(0, 255, 204, 0.05);
+}
+
+/* ==========================================================================
+   PREMIUM MOTION & ANIMATION TOOLKIT
+   ========================================================================== */
+
+:root {
+  --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --glow-color: rgba(0, 112, 243, 0.15); 
+}
+
+.custom-cursor {
+  width: 8px;
+  height: 8px;
+  background-color: #fff;
+  border-radius: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transition: width 0.2s, height 0.2s;
+}
+
+.custom-cursor-follower {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.08s ease-out, width 0.3s, height 0.3s, background-color 0.3s;
+}
+
+
+.cursor-hover .custom-cursor-follower {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: transparent;
+}
+
+.animate-reveal {
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(40px);
+  will-change: transform, opacity, filter;
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-reveal.active {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+.reveal-left { transform: translateX(-50px); }
+.reveal-right { transform: translateX(50px); }
+.reveal-scale { transform: scale(0.92); }
+
+.animate-reveal.reveal-left.active,
+.animate-reveal.reveal-right.active { transform: translateX(0); }
+.animate-reveal.reveal-scale.active { transform: scale(1); }
+
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+
+.premium-card {
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+
+.premium-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.premium-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -150%;
+  width: 50%; height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.15), transparent);
+  transform: skewX(-25deg);
+  transition: 0.75s;
+}
+
+.premium-card:hover::before {
+  left: 150%;
+}
+
+.char-reveal-container {
+  overflow: hidden;
+  display: inline-block;
+}
+
+.char-reveal {
+  display: inline-block;
+  transform: translateY(100%);
+  animation: revealText 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes revealText {
+  to { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-reveal, .premium-card, .custom-cursor, .custom-cursor-follower {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+  .custom-cursor, .custom-cursor-follower { display: none; }
+}
