@@ -48,7 +48,7 @@ const PROFILE = {
   location: "Lalmonirhat, Bangladesh",
   email: "dhrubosarkera@gmail.com",
   photoUrl:
-    "https://res.cloudinary.com/oiqiiqca/image/upload/v1783744780/Dhrubo_Sarker_Avroo_hl8c5b.png",
+    "https://res.cloudinary.com/oiqiiqca/image/upload/v1783744697/ChatGPT_Image_Jul_11_2026_10_17_49_AM_r4a8uk.png",
   roles: [
     "Cybersecurity Researcher",
     "AI Framework Architect",
